@@ -10,6 +10,7 @@ class Calculator:
         self.calculation = ""
         self.display_entry()
         self.display_buttons()
+        self.disable_keyboard_input()
 
     def display_entry(self):
         result_frame = tk.Frame(self.root)
@@ -225,10 +226,16 @@ class Calculator:
         if event.state == 4 and event.keysym == "Return":
             self.evaluate_calculation()
 
+    def disable_keyboard_input(self):
+        self.text_result.bind("<Key>", lambda e: "break")
+
+    def mainloop(self):
+        self.root.mainloop()
+
 
 def main():
     app = Calculator()
-    app.root.mainloop()
+    app.mainloop()
 
 
 if __name__ == "__main__":
